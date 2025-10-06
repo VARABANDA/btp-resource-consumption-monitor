@@ -205,7 +205,7 @@ Due to the export/import process of SAC, there might be misalignments between ou
 ### 3. Work Zone Content
 
 ***Important - First change the following code lines before continuing:***
-- Configure your **subaccount id** in business app configuration files of the multiple ui5 applications by searching for "<YOUR_SUBACCOUNT_GUID>" in each of the below files. Doing a search-and-replace should give you 8 matches:
+- Configure your **subaccount id** in business app configuration files of the multiple ui5 applications by searching for "2e469516-27ae-4b14-be19-368d485b853d" in each of the below files. Doing a search-and-replace should give you 8 matches:
     1. [Billing Differences app](./workzone/cdm/apps/billingdifferences.json#L85)
     2. [BTPRC Report app](./workzone/cdm/apps/btprcreport.json#L90)
     3. [Manage Alerts app](./workzone/cdm/apps/managealerts.json#L90)

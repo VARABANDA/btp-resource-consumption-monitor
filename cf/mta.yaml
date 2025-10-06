@@ -20,8 +20,8 @@ modules:
       - BTPResourceConsumption-db-deployer
     parameters:
       buildpack: nodejs_buildpack
-      disk-quota: 512M
-      memory: 512M
+      disk-quota: 1024M
+      memory: 1024M
     build-parameters:
       builder: npm
       ignore:
