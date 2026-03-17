@@ -5,6 +5,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.4.0 - Future
+### Added
+
+### Fixed
+
+### Changed
+- Support for CDS 9.7
+
+## Version 2.3.1 - 2026-02-05
+
+Hot fix related to Work Zone package only: updated application definitions in CDM to match updated Work Zone requirements
+
+## Version 2.3.0 - 2025-12-11
+### Added
+
+### Fixed
+- Improved migration script for upgrades from v2.1
+
+### Changed
+- Support for CDS 9.3
+- Kyma health checks
+
 ## Version 2.2.0 - 2025-09-12
 ### Added
 - New 'Application' level in account structure (subaccount > service > instance > application)

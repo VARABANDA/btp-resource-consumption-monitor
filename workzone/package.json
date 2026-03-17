@@ -1,6 +1,6 @@
 {
   "name": "btpresourceconsumption.cpkg",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": "SAP SE",
   "repository": {
     "type": "git",
@@ -14,9 +14,9 @@
     "@ui5/cli": "^4",
     "bestzip": "^2",
     "fs-extra": "^11",
-    "glob": "^11",
+    "glob": "^13",
     "handlebars": "^4",
-    "properties-reader": "^2",
+    "properties-reader": "^3",
     "rimraf": "^6"
   }
 }

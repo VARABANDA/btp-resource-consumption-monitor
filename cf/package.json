@@ -1,49 +1,49 @@
 {
   "name": "btp-resource-consumption",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "BTP usage and resource consumption dashboard",
   "repository": "https://github.com/SAP-samples/btp-resource-consumption-monitor",
   "license": "Apache-2.0",
   "private": true,
   "engines": {
     "node": ">=22",
-    "npm": ">=10"
+    "npm": ">=11"
   },
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.15",
-    "@cap-js/hana": "^2.2",
-    "@sap-cloud-sdk/connectivity": "^4.1",
-    "@sap-cloud-sdk/openapi": "^4.1",
-    "@sap/cds": "~9.2",
-    "@sap/xsenv": "^6.0",
-    "@sap/xssec": "^4.9",
-    "express": "^4.21.2"
+    "@cap-js/hana": "~2.6",
+    "@sap-cloud-sdk/connectivity": "^4.4",
+    "@sap-cloud-sdk/openapi": "^4.4",
+    "@sap/cds": "~9.7",
+    "@sap/xsenv": "^6.1",
+    "@sap/xssec": "^4.12"
   },
   "devDependencies": {
-    "@cap-js/cds-typer": "~0.36",
-    "@cap-js/cds-types": "~0.14",
-    "@cap-js/sqlite": "~2.0.2",
+    "@cap-js/cds-typer": "~0.38",
+    "@cap-js/cds-types": "~0.16",
+    "@cap-js/sqlite": "~2.1",
     "@sap-cloud-sdk/openapi-generator": "^4",
-    "@sap/cds-compiler": "~6.2",
-    "@sap/cds-dk": "~9.2",
+    "@sap/cds-dk": "~9.7",
     "@sap/eslint-plugin-cds": "^4.1",
-    "@sap/ux-specification": "^1.136",
-    "@types/node": "^24",
+    "@types/node": "^25",
     "@types/sap__xsenv": "^3",
-    "eslint": "^9.35",
-    "rimraf": "^6.0",
+    "eslint": "^9",
+    "mbt": "^1",
+    "rimraf": "^6",
     "ts-node": "^10.9",
     "typescript": "^5"
   },
   "scripts": {
     "start": "cds-serve",
+    "clean:apps": "rimraf app/**/node_modules app/**/dist app/**/package-lock.json",
+    "clean:kyma": "rimraf kyma/**/node_modules kyma/**/package-lock.json",
     "npmu:apps": "npm update --prefix ./app/billingdifferences && npm update --prefix ./app/btprcreport && npm update --prefix ./app/managealerts && npm update --prefix ./app/managetags && npm update --prefix ./app/measuresbytags && npm update --prefix ./app/measuresforyearbytags && npm update --prefix ./app/measuresforyears && npm update --prefix ./app/measurestotal",
     "npmu:kyma": "npm update --prefix ./kyma/ui-deployer",
     "build:cf": "rimraf @cds-models resources mta_archives gen && cds-ts build --production",
     "build:kyma": "cp -r kyma/ui-deployer gen && cp -r resources gen/ui-deployer",
     "cf:pack": "mbt build",
-    "cf:deploy": "cf deploy ./mta_archives/btp-resource-consumption_2.2.0.mtar",
-    "cf:deploy-with-notif": "cf deploy ./mta_archives/btp-resource-consumption_2.2.0.mtar -e mtaext_notifications.mtaext",
+    "cf:deploy": "cf deploy ./mta_archives/btp-resource-consumption_2.3.0.mtar",
+    "cf:deploy-with-notif": "cf deploy ./mta_archives/btp-resource-consumption_2.3.0.mtar -e mtaext_notifications.mtaext",
     "cf:undeploy": "cf undeploy btp-resource-consumption --delete-services --delete-service-keys --delete-service-brokers",
     "kyma:pack": "ctz containerize.yaml --push --log",
     "kyma:deploy": "helm upgrade --install btprc ./gen/chart --set-file xsuaa.jsonParameters=xs-security.json",
@@ -66,16 +66,17 @@
         "db": {
           "kind": "hana",
           "pool": {
-            "max": 50,
-            "acquireTimeoutMillis": 60000
+            "acquireTimeoutMillis": 30000
           }
         }
       },
       "[hybrid]": {
         "auth": "dummy",
         "db": {
-          "kind": "sqlite",
-          "url": "db.sqlite"
+          "kind": "hana",
+          "pool": {
+            "acquireTimeoutMillis": 30000
+          }
         }
       },
       "db": {

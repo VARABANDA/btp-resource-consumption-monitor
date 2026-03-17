@@ -78,6 +78,20 @@ From 2.1.x to 2.2.0, all elements have been changed: CAP backend, Fiori applicat
 
 After the upgrade, make sure to refresh the HTLM5 Repo and (if needed) assign the backend role again to the end users.
 
+**Important**: The upgrade to 2.2 triggers a migration, which, depending on the amount of already existing data points, will take some time. The application will do the migration during startup, but a timeout will make it crash and restart, after which it will continue the migration from where it stopped earlier. You will see the following logs during the migration and the aim will be to see all numbers go down to zero. It should be able to process about 10.000 records per startup. This is a one-time migration and subsequent restarts will be normal again.
+
+```
+[server] - xxx account structure items affected
+[server] - 0 custom tags needing update ...
+[server] - 0 custom tags updated
+[server] - 0 managed tags needing update ...
+[server] - 0 managed tags updated
+[server] - 0 commercial measures needing update ...
+[server] - 0 commercial measures updated
+[server] - 0 technical measures needing update ...
+[server] - 0 technical measures updated
+```
+
 ## Download and Installation
 
 This solution contains 3 installable components:
@@ -102,7 +116,7 @@ In **Business Application Studio**, make sure to have a `Development Space` of k
 cd cf
 npm install
 mbt build
-cf deploy ./mta_archives/btp-resource-consumption_2.2.0.mtar -e mtaext_notifications.mtaext
+npm run cf:deploy-with-notif
 ```
 
 ***Note:*** This deployment will trigger an **initial activation email** to your email address asking for your consent to receive further emails. Make sure to action this email to ensure you receive the notifications from this application!
@@ -113,7 +127,7 @@ cf deploy ./mta_archives/btp-resource-consumption_2.2.0.mtar -e mtaext_notificat
 cd cf
 npm install
 mbt build
-cf deploy ./mta_archives/btp-resource-consumption_2.2.0.mtar
+npm run cf:deploy
 ```
 
 #### For Kyma deployments:
@@ -372,11 +386,13 @@ To do so:
 
 ### For Cloud Foundry deployments:
 - In the Global Account where the application is deployed, create a new `User Provided Service` in which you paste the service key contents. The *name* of this user provided service has to contain `uas` (use e.g. `btprc-uas-ups-account2`).
-- Adapt the `cf/mta.yaml` on lines 36, 39 and 268, 275 to swap/add the bound standard service instance for the user-provided instance.
+- Adapt the `cf/mta.yaml`:
+    - To **add** an additional Global Account, uncomment/activate lines 40 and 276-277 and update their `name`s to match the name of your `User Provided Service`. If more than 1 additional Global Account is needed, duplicate these lines for each additional Global Account.
+    - To **remove** the default Global Account in which the application is deployed, comment/de-activate lines 37 and 269-275.
 
 ### For Kyma deployments:
 - In the Global Account where the application is deployed, create a new `Secret` in which you paste the service key contents. The *name* of this user provided service has to contain `uas` (use e.g. `btprc-uas-ups-account2`). You can use this [template file](./cf/kyma/template-additional-UAS.yaml) to create the secret.
-- Adapt the `cf/kyma/values.yaml` on lines 21 and 27 to swap/add the bound standard service instance for the user-provided instance.
+- Adapt the `cf/chart/values.yaml` on lines 21 and 27 to swap/add the bound standard service instance for the user-provided instance.
 
 ## Using Free Tier
 For demo and test purposes it is possible to implement this solution using Free Tier services. Be aware there are restrictions when using the Free Tier service plans.
