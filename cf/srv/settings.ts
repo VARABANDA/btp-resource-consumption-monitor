@@ -77,7 +77,6 @@ export const Settings = {
             'mobileservices',
             'objectstore',
             'postgresql-db',
-            'sap-analytics-cloud-embedded-edition',
             'sap-build-apps',
             'translationhub',
             'xfs-kyma'

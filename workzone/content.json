@@ -6,13 +6,6 @@
       "content": "role.base.json"
     }
   },
-  "role.sac": {
-    "type": "role",
-    "src": {
-      "from": "cdm",
-      "content": "role.SAC.json"
-    }
-  },
   "space_overview": {
     "type": "space",
     "src": {
@@ -130,34 +123,6 @@
     "src": {
       "from": "cdm/pages",
       "content": "info.optimization.json"
-    }
-  },
-  "page-sac.creditprojection": {
-    "type": "workpage",
-    "src": {
-      "from": "cdm/pages",
-      "content": "sac.creditprojection.json"
-    }
-  },
-  "page-sac.measuresbytags": {
-    "type": "workpage",
-    "src": {
-      "from": "cdm/pages",
-      "content": "sac.measuresbytags.json"
-    }
-  },
-  "page-sac.measuresforyearbytags": {
-    "type": "workpage",
-    "src": {
-      "from": "cdm/pages",
-      "content": "sac.measuresforyearbytags.json"
-    }
-  },
-  "page-sac.technicalallocation": {
-    "type": "workpage",
-    "src": {
-      "from": "cdm/pages",
-      "content": "sac.technicalallocation.json"
     }
   },
   "card-top5forecast": {
@@ -291,42 +256,6 @@
     "src": {
       "from": "cdm/cards/info.optimization4",
       "package": "cards.info.optimization4.zip",
-      "manifest": "src/manifest.json",
-      "build": "npm i && npm run-script build"
-    }
-  },
-  "card-sac.creditprojection": {
-    "type": "card",
-    "src": {
-      "from": "cdm/cards/sac.creditprojection",
-      "package": "cards.sac.creditprojection.zip",
-      "manifest": "src/manifest.json",
-      "build": "npm i && npm run-script build"
-    }
-  },
-  "card-sac.measuresbytags": {
-    "type": "card",
-    "src": {
-      "from": "cdm/cards/sac.measuresbytags",
-      "package": "cards.sac.measuresbytags.zip",
-      "manifest": "src/manifest.json",
-      "build": "npm i && npm run-script build"
-    }
-  },
-  "card-sac.measuresforyearbytags": {
-    "type": "card",
-    "src": {
-      "from": "cdm/cards/sac.measuresforyearbytags",
-      "package": "cards.sac.measuresforyearbytags.zip",
-      "manifest": "src/manifest.json",
-      "build": "npm i && npm run-script build"
-    }
-  },
-  "card-sac.technicalallocation": {
-    "type": "card",
-    "src": {
-      "from": "cdm/cards/sac.technicalallocation",
-      "package": "cards.sac.technicalallocation.zip",
       "manifest": "src/manifest.json",
       "build": "npm i && npm run-script build"
     }
